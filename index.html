@@ -27,6 +27,41 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+
+    <!-- Whatsapp -->
+
+    <!-- <script>
+        // Helper function to delay opening a URL until a gtag event is sent.
+        // Call it in response to an action that should navigate to a URL.
+        function gtagSendEvent(url) {
+          var callback = function () {
+            if (typeof url === 'string') {
+              window.location = url;
+            }
+          };
+          gtag('event', 'conversion_event_contact', {
+            'event_callback': callback,
+            'event_timeout': 2000,
+            // <event_parameters>
+          });
+          return false;
+        }
+      </script> -->
+
+      <!-- Forms -->
+
+      <script>
+        function gtagSendEvent() {
+          gtag('event', 'conversion_event_contact', {
+            'event_callback': function () {
+              document.getElementById('bookingForm').submit();
+            },
+            'event_timeout': 2000
+          });
+          return false;
+        }
+      </script>
 </head>
 
 <body>
@@ -81,7 +116,8 @@
                         <a href="index.html" class="nav-item nav-link active">Home</a>
                         <a href="#sobre" class="nav-item nav-link">About</a>
                         <a href="#tours" class="nav-item nav-link">Tours</a>
-                        <a href="#forms" class="nav-item nav-link">Contact Us</a>
+                        <!-- <a href="#forms" class="nav-item nav-link">Contact Us</a> -->
+                        <a href="#forms" class="nav-item nav-link">Book Now</a>
                         <!-- <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">
@@ -92,9 +128,12 @@
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                             </div>
                         </div> -->
-                        <a href="https://wa.me/5592984651195?text=Hello%2C%20I%20would%20like%20to%20book%20an%20experience" id="btn-whatsapp" class="btn btn-primary mt-3">
+                        <!-- <a href="https://wa.me/5592984651195?text=Hello%2C%20I%20would%20like%20to%20book%20an%20experience"
+                           onclick="return gtagSendEvent(this.href);" 
+                           id="btn-whatsapp" 
+                           class="btn btn-primary mt-3">
                             Book Now <img id="whatsapp" src="img/whatsapp.png" alt=""> 
-                        </a>
+                        </a> -->
                     </div>
                 </div>
             </nav>
@@ -113,9 +152,13 @@
                         <div class="p-3" style="max-width: 900px">
                             <h4 class="text-white text-uppercase mb-md-3">Jungle Tours</h4>
                             <h1 class="display-3 text-white mb-md-4">Let's Discover The Heart of the Amazon</h1>
-                            <a href="https://wa.me/5592984651195?text=Hello%2C%20I%20would%20like%20to%20book%20an%20experience" id="btn-whatsapp" class="btn btn-primary mt-3">
-                                Book Now <img id="whatsapp" src="img/whatsapp.png" alt=""> 
-                            </a>
+                            <!-- <a href="https://wa.me/5592984651195?text=Hello%2C%20I%20would%20like%20to%20book%20an%20experience"
+                               onclick="return gtagSendEvent(this.href);" 
+                               id="btn-whatsapp" 
+                               class="btn btn-primary mt-3">
+                               Book Now <img id="whatsapp" src="img/whatsapp.png" alt=""> 
+                            </a> -->
+                            <a href="#forms" class="btn btn-primary py-md-3 px-md-5 mt-2">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -125,9 +168,13 @@
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Jungle Experience</h4>
                             <h1 class="display-3 text-white mb-md-4">Discover Amazing Places With Us</h1>
-                            <a href="https://wa.me/5592984651195?text=Hello%2C%20I%20would%20like%20to%20book%20an%20experience" id="btn-whatsapp" class="btn btn-primary mt-3">
-                                Book Now <img id="whatsapp" src="img/whatsapp.png" alt=""> 
-                            </a>
+                            <!-- <a href="https://wa.me/5592984651195?text=Hello%2C%20I%20would%20like%20to%20book%20an%20experience"
+                            onclick="return gtagSendEvent(this.href);" 
+                            id="btn-whatsapp" 
+                            class="btn btn-primary mt-3">
+                            Book Now <img id="whatsapp" src="img/whatsapp.png" alt=""> 
+                         </a> -->
+                         <a href="#forms" class="btn btn-primary py-md-3 px-md-5 mt-2">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -223,9 +270,13 @@
                                 <img class="img-fluid" src="img/placa2.jpeg" alt="">
                             </div>
                         </div>
-                        <a href="https://wa.me/5592984651195?text=Hello%2C%20I%20would%20like%20to%20book%20an%20experience" id="btn-whatsapp" class="btn btn-primary mt-3">
-                            Book Now <img id="whatsapp" src="img/whatsapp.png" alt=""> 
-                        </a>
+                        <!-- <a href="https://wa.me/5592984651195?text=Hello%2C%20I%20would%20like%20to%20book%20an%20experience"
+                        onclick="return gtagSendEvent(this.href);" 
+                        id="btn-whatsapp" 
+                        class="btn btn-primary mt-3">
+                        Book Now <img id="whatsapp" src="img/whatsapp.png" alt=""> 
+                     </a> -->
+                     <a href="#forms" class="btn btn-primary py-md-3 px-md-5 mt-2">Book Now</a>
                     </div>
                 </div>
             </div>
@@ -284,9 +335,13 @@
             <div class="text-center mb-3 pb-3">
                 <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Tours</h6>
                 <h1>We offer the following tours</h1>
-                <a href="https://wa.me/5592984651195?text=Hello%2C%20I%20would%20like%20to%20book%20an%20experience" id="btn-whatsapp" class="btn btn-primary mt-3">
-                    Book Now <img id="whatsapp" src="img/whatsapp.png" alt=""> 
-                </a>
+                <!-- <a href="https://wa.me/5592984651195?text=Hello%2C%20I%20would%20like%20to%20book%20an%20experience"
+                onclick="return gtagSendEvent(this.href);" 
+                id="btn-whatsapp" 
+                class="btn btn-primary mt-3">
+                Book Now <img id="whatsapp" src="img/whatsapp.png" alt=""> 
+             </a> -->
+             <a href="#forms" class="btn btn-primary py-md-3 px-md-5 mt-2">Book Now</a>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-4">
@@ -480,9 +535,12 @@
                     </ul>
                     
                     <!-- WhatsApp Button -->
-                    <a href="https://wa.me/5592984651195?text=Hello%2C%20I%20would%20like%20to%20book%20an%20experience" id="btn-whatsapp" class="btn btn-primary mt-3">
-                        Book Now <img id="whatsapp" src="img/whatsapp.png" alt=""> 
-                    </a>
+                    <!-- <a href="https://wa.me/5592984651195?text=Hello%2C%20I%20would%20like%20to%20book%20an%20experience"
+                    onclick="return gtagSendEvent(this.href);" 
+                    id="btn-whatsapp" 
+                    class="btn btn-primary mt-3">
+                    Book Now <img id="whatsapp" src="img/whatsapp.png" alt=""> 
+                    </a> -->
                 </div>
                 <div class="col-lg-5">
                     <div class="card border-0">
@@ -643,6 +701,7 @@
     
         document.getElementById("bookingForm").addEventListener("submit", function(event) {
         event.preventDefault(); // Evita o envio padrão do formulário
+        gtagSendEvent();    // Dispara evento e depois envia o form
 
         let form = this; // Captura a referência do formulário
 
@@ -680,10 +739,11 @@
             alert("Erro ao enviar o e-mail.");
         });
     });
-
     </script>
 
    
 </body>
 
 </html>
+
+
