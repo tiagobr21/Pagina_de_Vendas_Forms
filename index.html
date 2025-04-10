@@ -128,12 +128,13 @@
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                             </div>
                         </div> -->
-                        <a href="https://wa.me/5592984651195?text=Hello%2C%20I%20would%20like%20to%20book%20an%20experience"
-                           onclick="return gtagSendEvent(this.href);" 
+                        <a href="#"
                            id="btn-whatsapp" 
                            class="btn btn-primary mt-3">
                             Book Now <img id="whatsapp" src="img/whatsapp.png" alt=""> 
                         </a>
+
+                        <!-- onclick="return gtagSendEvent(this.href);"  -->
                     </div>
                 </div>
             </nav>
@@ -152,8 +153,7 @@
                         <div class="p-3" style="max-width: 900px">
                             <h4 class="text-white text-uppercase mb-md-3">Jungle Tours</h4>
                             <h1 class="display-3 text-white mb-md-4">Let's Discover The Heart of the Amazon</h1>
-                            <a href="https://wa.me/5592984651195?text=Hello%2C%20I%20would%20like%20to%20book%20an%20experience"
-                               onclick="return gtagSendEvent(this.href);" 
+                            <a href="#"
                                id="btn-whatsapp" 
                                class="btn btn-primary mt-3">
                                Book Now <img id="whatsapp" src="img/whatsapp.png" alt=""> 
@@ -168,8 +168,7 @@
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Jungle Experience</h4>
                             <h1 class="display-3 text-white mb-md-4">Discover Amazing Places With Us</h1>
-                            <a href="https://wa.me/5592984651195?text=Hello%2C%20I%20would%20like%20to%20book%20an%20experience"
-                            onclick="return gtagSendEvent(this.href);" 
+                            <a href="#"
                             id="btn-whatsapp" 
                             class="btn btn-primary mt-3">
                             Book Now <img id="whatsapp" src="img/whatsapp.png" alt=""> 
@@ -270,8 +269,7 @@
                                 <img class="img-fluid" src="img/placa2.jpeg" alt="">
                             </div>
                         </div>
-                        <a href="https://wa.me/5592984651195?text=Hello%2C%20I%20would%20like%20to%20book%20an%20experience"
-                        onclick="return gtagSendEvent(this.href);" 
+                        <a href="#"
                         id="btn-whatsapp" 
                         class="btn btn-primary mt-3">
                         Book Now <img id="whatsapp" src="img/whatsapp.png" alt=""> 
@@ -335,8 +333,7 @@
             <div class="text-center mb-3 pb-3">
                 <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Tours</h6>
                 <h1>We offer the following tours</h1>
-                <a href="https://wa.me/5592984651195?text=Hello%2C%20I%20would%20like%20to%20book%20an%20experience"
-                onclick="return gtagSendEvent(this.href);" 
+                <a href="#"
                 id="btn-whatsapp" 
                 class="btn btn-primary mt-3">
                 Book Now <img id="whatsapp" src="img/whatsapp.png" alt=""> 
@@ -535,8 +532,7 @@
                     </ul>
                     
                     <!-- WhatsApp Button -->
-                    <a href="https://wa.me/5592984651195?text=Hello%2C%20I%20would%20like%20to%20book%20an%20experience"
-                    onclick="return gtagSendEvent(this.href);" 
+                    <a href="#" 
                     id="btn-whatsapp" 
                     class="btn btn-primary mt-3">
                     Book Now <img id="whatsapp" src="img/whatsapp.png" alt=""> 
@@ -699,7 +695,7 @@
     
     
     
-        document.getElementById("bookingForm").addEventListener("submit", function(event) {
+      document.getElementById("bookingForm").addEventListener("submit", function(event) {
         event.preventDefault(); // Evita o envio padrão do formulário
         // gtagSendEvent();    // Dispara evento e depois envia o form
 
@@ -739,6 +735,33 @@
             alert("Erro ao enviar o e-mail.");
         });
     });
+       
+            document.getElementById("btn-whatsapp").addEventListener("click", function(event) {
+            event.preventDefault(); // Evita o redirecionamento imediato
+
+            (function() {
+                emailjs.init("gF4xf8QsceYLWdeSS"); // Substitua pelo seu User ID
+            })();
+
+            let emailDestiny = "tiagobrr17@hotmail.com";
+
+            let templateParams = {
+                to_email: emailDestiny,
+                subject: "Novo Contato via WhatsApp",
+                message: `Nova Solicitação de Reserva via WhatsApp`
+            };
+
+            emailjs.send("service_4cikbl7", "template_xdkxuee", templateParams)
+            .then(function(response) {
+                console.log("E-mail enviado com sucesso!", response);
+                // Após o envio, redireciona para o WhatsApp
+                window.location.href = "https://wa.me/5592984651195?text=Hello%2C%20I%20would%20like%20to%20book%20an%20experience";
+            }, function(error) {
+                console.error("Erro ao enviar e-mail:", error);
+                alert("Erro ao enviar o e-mail.");
+            });
+        });
+
     </script>
 
    
