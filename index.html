@@ -701,7 +701,7 @@
     
         document.getElementById("bookingForm").addEventListener("submit", function(event) {
         event.preventDefault(); // Evita o envio padrão do formulário
-        gtagSendEvent();    // Dispara evento e depois envia o form
+        // gtagSendEvent();    // Dispara evento e depois envia o form
 
         let form = this; // Captura a referência do formulário
 
@@ -733,7 +733,7 @@
             console.log("E-mail enviado com sucesso!", response);
             let confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
             confirmationModal.show();
-            form.reset(); // Reseta o formulário corretamente
+            // form.reset(); // Reseta o formulário corretamente
         }, function(error) {
             console.error("Erro ao enviar e-mail:", error);
             alert("Erro ao enviar o e-mail.");
