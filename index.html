@@ -498,6 +498,43 @@
     </div> -->
     <!-- Packages End -->
 
+    <div class="container py-4">
+      <div class="text-center mb-3 pb-3">
+                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Moments</h6>
+
+                <a href="#forms" id="btn-whatsapp"  class="btn btn-primary mt-3">
+                    Contact us 
+                  </a>
+             <!-- <a href="#forms" class="btn btn-primary py-md-3 px-md-5 mt-2">Book Now</a> -->
+            </div>
+        <div class="galeria-scroll d-flex">
+            <img src="img/gallery1.jpg" alt="Imagem 1" class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#imagemModal" data-img="img/gallery1.jpg">
+            <img src="img/gallery2.jpg" alt="Imagem 2" class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#imagemModal" data-img="img/gallery2.jpg">
+            <img src="img/gallery3.jpg" alt="Imagem 3" class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#imagemModal" data-img="img/gallery3.jpg">
+            <img src="img/gallery4.jpg" alt="Imagem 4" class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#imagemModal" data-img="img/gallery4.jpg">
+            <img src="img/gallery5.jpg" alt="Imagem 5" class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#imagemModal" data-img="img/gallery5.jpg">
+            <img src="img/gallery6.jpg" alt="Imagem 6" class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#imagemModal" data-img="img/gallery6.jpg">
+            <img src="img/gallery7.jpg" alt="Imagem 7" class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#imagemModal" data-img="img/gallery7.jpg">
+            <img src="img/gallery8.jpg" alt="Imagem 8" class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#imagemModal" data-img="img/gallery8.jpg">
+            <img src="img/gallery9.jpg" alt="Imagem 9" class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#imagemModal" data-img="img/gallery9.jpg">
+            <img src="img/gallery10.jpg" alt="Imagem 10" class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#imagemModal" data-img="img/gallery10.jpg">
+            <img src="img/gallery11.jpg" alt="Imagem 11" class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#imagemModal" data-img="img/gallery11.jpg">
+            <img src="img/gallery12.jpg" alt="Imagem 12" class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#imagemModal" data-img="img/gallery12.jpg">
+            <img src="img/gallery13.jpg" alt="Imagem 13" class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#imagemModal" data-img="img/gallery13.jpg">
+         </div>
+    </div>
+
+    <!-- Modal -->
+  <div class="modal fade" id="imagemModal" tabindex="-1" aria-labelledby="imagemModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg ">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <img id="imagemModalGrande" src="" alt="Imagem ampliada">
+      </div>
+    </div>
+  </div>
+</div>
+
 
     <!-- Registration Start -->
     <div id="forms" class="container-fluid bg-registration py-5" >
@@ -589,7 +626,7 @@
     <!-- Registration End -->
 
         <!-- More Info Start -->
-<div id="informacoes" class="container-fluid py-5 bg-light">
+<div id="hostel" class="container-fluid py-5 ">
     <div class="container pt-5">
         <div class="row">
             <div class="col-lg-6 pt-5 pb-lg-5">
@@ -601,7 +638,7 @@
                     <!-- <a href="#forms" class="btn btn-success mt-3">Contact Us</a> -->
                 </div>
             </div>
-            <div class="col-lg-6" style="min-height: 500px;">
+            <div class="col-lg-6" id="img-hostel" style="min-height: 500px;">
                 <div class="position-relative h-100">
                     <img class="position-absolute w-100 h-100" src="img/hostel_manaus.webp" style="object-fit: cover;">
                 </div>
@@ -612,7 +649,7 @@
 
 
     <!-- Footer Start -->
-    <div  class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" >
+    <div   class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" >
         <div class="row pt-5">
             <div class="col-lg-4 col-md-6 mb-5">
                 <a href="" class="navbar-brand">
@@ -769,6 +806,13 @@
                 alert("Erro ao enviar o e-mail.");
             });
         });
+
+        document.querySelectorAll('[data-bs-toggle="modal"]').forEach(img => {
+            img.addEventListener('click', () => {
+            const imgSrc = img.getAttribute('data-img');
+            document.getElementById('imagemModalGrande').src = imgSrc;
+            });
+         });
 
     </script>
 

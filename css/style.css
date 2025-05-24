@@ -49,6 +49,36 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+.galeria-scroll {
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .galeria-scroll img {
+      height: 160px;
+      margin: 5px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .galeria-scroll img:hover {
+      transform: scale(1.05);
+    }
+
+    .modal-content {
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+    }
+
+    .modal-body {
+      padding: 0;
+    }
+
+    #imagemModalGrande {
+      max-width: 100%;
+      height: auto;
+      border: none;
+    }
+
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
@@ -3873,8 +3903,21 @@ input[type="button"].btn-block {
 
 #tours{
   background-color: #dee2e6;
-  
 }
+
+#hostel{
+   background-color: #dee2e6;
+}
+
+.about-text{
+  border-radius: 50px;
+}
+
+img{
+   border-radius: 50px;
+}
+
+
 
 #seta{
   width: 35px;
@@ -3952,8 +3995,9 @@ input[type="button"].btn-block {
   }
 
   #about-images .img-fluid{
-    margin-top: 10px;
+    margin: 10px 80px;
     max-width: 300px;
+  
   }
   
 
