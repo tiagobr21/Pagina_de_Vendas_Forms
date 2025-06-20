@@ -613,7 +613,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <button class="btn btn-primary btn-block py-3" type="submit">Submit</button>
+                                    <button class="btn btn-primary btn-block py-3" id="submitBtn" type="submit">Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -707,6 +707,12 @@
         </div>
     </div>
 
+    <div class="text-center mb-3" id="form-loading" style="display: none;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        </div>
+
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
@@ -737,82 +743,109 @@
     
     
     
-      document.getElementById("bookingForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // Evita o envio padrão do formulário
-        // gtagSendEvent();    // Dispara evento e depois envia o form
+     document.getElementById("bookingForm").addEventListener("submit", function(event) { 
+    event.preventDefault(); // Impede o envio padrão do formulário
 
-        let form = this; // Captura a referência do formulário
+    // Mostra o loading e desabilita o botão
+    document.getElementById('form-loading').style.display = 'block';
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
 
-        (function() {
-            emailjs.init("gF4xf8QsceYLWdeSS"); // Substitua pelo seu User ID
-        })();
+    
 
-        let emailDestiny = "antonio_jungletours@hotmail.com";
-        let emailCC = "amazonantoniojungletours@gmail.com";
-        let nameUser = document.getElementById('name').value;
-        let emailUser = document.getElementById('email').value;
-        let howManyPeople = document.querySelector('input[name="people"]:checked')?.value || "Não informado";
-        let howManyDays = document.querySelector('input[name="days"]:checked')?.value || "Não informado";
+    // Inicializa o EmailJS
+    (function() {
+        emailjs.init("gF4xf8QsceYLWdeSS");
+    })();
 
-        let templateParams = {
-            to_email: emailDestiny,
-            cc_email: emailCC,
-            subject: "Novo Contato do Formulário",
-            message: `Nova Solicitação de Reserva:
-            
-            Nome: ${nameUser}
-            E-mail: ${emailUser}
-            Quantidade de Pessoas: ${howManyPeople}
-            Quantidade de Dias: ${howManyDays}`
-        };
+    // Coleta os dados do formulário
+    let emailDestiny = "antonio_jungletours@hotmail.com";
+    let emailCC = "amazonantoniojungletours@gmail.com";
+    let nameUser = document.getElementById('name').value;
+    let emailUser = document.getElementById('email').value;
+    let howManyPeople = document.querySelector('input[name="people"]:checked')?.value || "Não informado";
+    let howManyDays = document.querySelector('input[name="days"]:checked')?.value || "Não informado";
 
-            emailjs.send("service_4cikbl7", "template_xdkxuee", templateParams)
-            .then(function(response) {
-                console.log("E-mail enviado com sucesso!", response);
-                let confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
-                confirmationModal.show();
-                // form.reset(); // Reseta o formulário corretamente
-            }, function(error) {
-                console.error("Erro ao enviar e-mail:", error);
-                alert("Erro ao enviar o e-mail.");
-            });
-        });
-       
-        document.getElementById("btn-whatsapp").addEventListener("click", function(event) {
-            event.preventDefault(); // Evita o redirecionamento imediato
+    let templateParams = {
+        to_email: emailDestiny,
+        cc_email: emailCC,
+        subject: "Novo Contato do Formulário",
+        message: `Nova Solicitação de Reserva:
+        
+        Nome: ${nameUser}
+        E-mail: ${emailUser}
+        Quantidade de Pessoas: ${howManyPeople}
+        Quantidade de Dias: ${howManyDays}`
+    };
 
-            console.log('aqui');
-            
+    emailjs.send("service_4cikbl7", "template_xdkxuee", templateParams)
+    .then(function(response) {
+        console.log("E-mail enviado com sucesso!", response);
 
-            (function() {
-                emailjs.init("gF4xf8QsceYLWdeSS"); // Substitua pelo seu User ID
-            })();
+        // Oculta o loading e reabilita o botão
+        document.getElementById('form-loading').style.display = 'none';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit';
 
-            let emailDestiny = "tiagobrr17@hotmail.com";
+        // Mostra o modal de confirmação
+        let confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+        confirmationModal.show();
 
-            let templateParams = {
-                to_email: emailDestiny,
-                subject: "Novo Contato via WhatsApp",
-                message: `Nova Solicitação de Reserva via WhatsApp`
-            };
+        // form.reset(); // Se quiser resetar o formulário
+    }, function(error) {
+        console.error("Erro ao enviar e-mail:", error);
+        alert("Erro ao enviar o e-mail.");
 
-            emailjs.send("service_4cikbl7", "template_xdkxuee", templateParams)
-            .then(function(response) {
-                console.log("E-mail enviado com sucesso!", response);
-                // Após o envio, redireciona para o WhatsApp
-                window.location.href = "https://wa.me/559299618314?text=Hello%2C%20I%20would%20like%20to%20know%20more%20information.";
-            }, function(error) {
-                console.error("Erro ao enviar e-mail:", error);
-                alert("Erro ao enviar o e-mail.");
-            });
-        });
+        // Oculta o loading e reabilita o botão
+        document.getElementById('form-loading').style.display = 'none';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit';
+    });
+});
+     document.getElementById("btn-whatsapp").addEventListener("click", function(event) {
+    event.preventDefault(); // Evita o redirecionamento imediato
 
-        document.querySelectorAll('[data-bs-toggle="modal"]').forEach(img => {
-            img.addEventListener('click', () => {
-            const imgSrc = img.getAttribute('data-img');
-            document.getElementById('imagemModalGrande').src = imgSrc;
-            });
-         });
+    // Mostra o loading e desabilita o botão
+    document.getElementById('form-loading').style.display = 'block';
+    const submitBtn = document.getElementById('btn-whatsapp');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    // Inicializa o EmailJS
+    (function() {
+        emailjs.init("gF4xf8QsceYLWdeSS");
+    })();
+
+    let emailDestiny = "amazonantoniojungletours@gmail.com";
+
+    let templateParams = {
+        to_email: emailDestiny,
+        subject: "Novo Contato via WhatsApp",
+        message: `Nova Solicitação de Reserva via WhatsApp`
+    };
+
+    emailjs.send("service_4cikbl7", "template_xdkxuee", templateParams)
+    .then(function(response) {
+        console.log("E-mail enviado com sucesso!", response);
+
+        // Oculta o loading e reabilita o botão
+        document.getElementById('form-loading').style.display = 'none';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Book Now';
+
+        // Redireciona para o WhatsApp
+        window.location.href = "https://wa.me/559299618314?text=Hello%2C%20I%20would%20like%20to%20know%20more%20information.";
+    }, function(error) {
+        console.error("Erro ao enviar e-mail:", error);
+        alert("Erro ao enviar o e-mail.");
+
+        // Oculta o loading e reabilita o botão
+        document.getElementById('form-loading').style.display = 'none';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Book Now';
+    });
+});
 
     </script>
 
