@@ -743,45 +743,74 @@
     
     
     
-    document.getElementById("bookingForm").addEventListener("submit", function(event) { 
+     document.getElementById("bookingForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Impede envio tradicional
 
-                // Mostra o loading e desabilita o botão
-            document.getElementById('form-loading').style.display = 'block';
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
+      // Mostra o loading e desabilita o botão
+      document.getElementById('form-loading').style.display = 'block';
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
 
-            // Coleta os dados do formulário
-            let nameUser = document.getElementById('name').value;
-            let emailUser = document.getElementById('email').value;
-            let howManyPeople = document.querySelector('input[name="people"]:checked')?.value || "Não informado";
-            let howManyDays = document.querySelector('input[name="days"]:checked')?.value || "Não informado";
+      // Coleta os dados do formulário
+      let nameUser = document.getElementById('name').value;
+      let emailUser = document.getElementById('email').value;
+      let howManyPeople = document.querySelector('input[name="people"]:checked')?.value || "Não informado";
+      let howManyDays = document.querySelector('input[name="days"]:checked')?.value || "Não informado";
+     
+       let emailDestiny = "amazonantoniojungletours@gmail.com";
 
-            // Monta a mensagem para o WhatsApp
-            let message = `Nova Solicitação de Reserva:\n\n` +
+      // Dados para enviar via email
+      let templateParams = {
+            to_email: emailDestiny,
+            subject: "Novo Formulario Enviado para o Whatsapp",
+            message: `Nome: ${nameUser}\n` +
+                        `E-mail: ${emailUser}\n` +
+                        `Quantidade de Pessoas: ${howManyPeople}\n` +
+                        `Quantidade de Dias: ${howManyDays}`
+        };
+
+            // Inicializa o EmailJS
+        (function() {
+            emailjs.init("gF4xf8QsceYLWdeSS");
+        })();
+
+        console.log(templateParams);
+        
+
+      // Envia o e-mail com EmailJS
+      emailjs.send('service_4cikbl7', 'template_xdkxuee', templateParams)
+        .then(function(response) {
+          console.log('Email enviado com sucesso!', response.status, response.text);
+
+          // Monta a mensagem para o WhatsApp
+          let message = `Nova Solicitação de Reserva:\n\n` +
                         `Nome: ${nameUser}\n` +
                         `E-mail: ${emailUser}\n` +
                         `Quantidade de Pessoas: ${howManyPeople}\n` +
                         `Quantidade de Dias: ${howManyDays}`;
 
-            // Codifica a mensagem para URL
-            let encodedMessage = encodeURIComponent(message);
+          let encodedMessage = encodeURIComponent(message);
+          let phoneNumber = "559299618314";
+          window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
 
-            // Número de destino no formato internacional (sem + ou traços)
-            let phoneNumber = "559299618314"; // Substitua com o número real
+          // Oculta o loading e reabilita o botão
+          document.getElementById('form-loading').style.display = 'none';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit';
 
-            // Abre o WhatsApp com a mensagem pronta
-            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+          // Mostra modal de confirmação
+          let confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+          confirmationModal.show();
 
-            // Oculta o loading e reabilita o botão após abrir o WhatsApp
-            document.getElementById('form-loading').style.display = 'none';
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Submit';
-
-            // (Opcional) Mostra modal de confirmação
-            let confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
-            confirmationModal.show();
-    });
+        }, function(error) {
+          console.error('Falha ao enviar e-mail:', error);
+          alert("Ocorreu um erro ao enviar o e-mail. Tente novamente.");
+          document.getElementById('form-loading').style.display = 'none';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit';
+        });
+  });
   
 document.getElementById("btn-whatsapp").addEventListener("click", function(event) {
        
